@@ -1,0 +1,25 @@
+import React from "react";
+import {motion, AnimatePresence} from 'framer-motion';
+import { useContext } from "react";
+import FeedbackItem from "./FeedbackItem";
+import FeedbackContext from "../context/FeedbackContext";
+
+function FeedbackList() {
+    const {feedback} = useContext(FeedbackContext)
+
+    if(!feedback || feedback.length === 0) {
+        return <p>No Feedback yet</p>
+    }
+    return (
+        <div className="feedback-list">
+            <AnimatePresence>
+           {feedback.map((item) => (  
+                <FeedbackItem key={item.id} item={item}/>
+               
+           ))}
+           </AnimatePresence>
+        </div>
+    );
+}
+
+export default FeedbackList
